@@ -24,12 +24,16 @@ class App extends Component {
   }
 
   nextPage = event => {
-   
+    console.log(this.state.nextPage)
+   console.log(event.target)
     this.setState({ 
       starwarsChars: [...this.state.starwarsChars],
       url: this.state.nextPage
     });
     this.componentDidUpdate();
+    if (this.state.nextPage === "https://swapi.co/api/people/?page=9") {
+      event.target.setAttribute('disabled', true);
+    }
   }
 
   getCharacters = URL => {
