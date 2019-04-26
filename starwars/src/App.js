@@ -9,7 +9,7 @@ class App extends Component {
       starwarsChars: [],
       url: `https://swapi.co/api/people/`,
       nextPage: '',
-     
+      previousPage: null
     };
   }
 
@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.nextPage === this.state.url) {
+    if (this.state.nextPage === this.state.url || this.state.previousPage === this.state.url) {
       this.getCharacters(this.state.url)
     }
   }
@@ -36,6 +36,19 @@ class App extends Component {
     }
   }
 
+  previousPage = event => {
+    console.log(this.state.previousPage)
+   console.log(event.target)
+    this.setState({ 
+      starwarsChars: [...this.state.starwarsChars],
+      url: this.state.previousPage
+    });
+    this.componentDidUpdate();
+    if (this.state.previousPage === "https://swapi.co/api/people/?page=1") {
+      event.target.setAttribute('disabled', true);
+    }
+  }
+
   getCharacters = URL => {
     // feel free to research what this code is doing.
     // At a high level we are calling an API to fetch some starwars data from the open web.
@@ -48,19 +61,22 @@ class App extends Component {
         console.log(data)
         this.setState({ 
           starwarsChars: data.results,
-          nextPage: data.next });
+          nextPage: data.next,
+          previousPage: data.previous
+        });
       })
       .catch(err => {
         throw new Error(err);
       });
   };
-
+  
   render() {
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
-        
+        {console.log(this.state.previousPage)}
         <Starwarschars characters={this.state.starwarsChars} />
+        <button className="previous-button" onClick={this.previousPage} disabled={this.state.previousPage === null ? true : false}>Previous Page</button>
         <button className="next-button" onClick={this.nextPage}>Next Page</button>
       </div>
     );
