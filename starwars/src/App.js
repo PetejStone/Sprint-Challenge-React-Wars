@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
+import Starwarschars from './components/Starwarschars';
 
 class App extends Component {
   constructor() {
@@ -33,6 +34,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
+        <Starwarschars characters={this.state.starwarsChars} />
       </div>
     );
   }
