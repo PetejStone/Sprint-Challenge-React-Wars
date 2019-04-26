@@ -1,14 +1,12 @@
 import React from 'react';
-
+import './StarWars.scss';
 const Starwarschars = props => {
     return ( 
-        <ul>
+        <ul className="characters">
             {props.characters.map(character => 
-                <li>
-                    <div>
-                        <p>
-                            Name: {character.name}
-                        </p>
+                <li className="character">
+                    <div className="character-item">
+                        <h3>{character.name}</h3>
                         <p>
                             Birth Year: {character.birth_year}
                         </p>
@@ -27,6 +25,7 @@ const Starwarschars = props => {
                         <p>
                             Weight: {character.mass}kg
                         </p>
+
                     </div>
                 
                 </li>)}
