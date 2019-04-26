@@ -17,16 +17,19 @@ class App extends Component {
       this.getCharacters(this.state.url)
   }
 
-  
-  
-  
+  componentDidUpdate() {
+    if (this.state.nextPage === this.state.url) {
+      this.getCharacters(this.state.url)
+    }
+  }
 
   nextPage = event => {
+   
     this.setState({ 
+      starwarsChars: [...this.state.starwarsChars],
       url: this.state.nextPage
     });
-    this.componentDidMount();
-
+    this.componentDidUpdate();
   }
 
   getCharacters = URL => {
