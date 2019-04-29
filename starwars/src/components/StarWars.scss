@@ -1,0 +1,30 @@
+.character {
+    list-style-type: none;
+    background-color: rgba(2255, 255, 255, 0.5);
+    padding: 1rem;
+    border-radius: 15px;
+    margin: 1rem;
+    width: 12rem;
+    
+}
+
+.characters {
+    padding-left: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.previous-button,
+.next-button {
+    padding: 1rem;
+    border: none;
+    color: #000;
+    background-color:#B37352;
+    border-radius: 10px;
+    width: 10rem;
+    font-size: 1rem;
+    margin: 1rem;
+    cursor: pointer;
+}
